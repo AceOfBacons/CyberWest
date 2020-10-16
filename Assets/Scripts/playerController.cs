@@ -14,12 +14,13 @@ public class playerController : MonoBehaviour
     // Private vars
     private Rigidbody2D rBody;
     private bool isGrounded = false; //make sure i am not touching the ground initially
-
+    private bool isFacingRight;
 
     void Start()
     {
         // Catching the rbody
         rBody = GetComponent<Rigidbody2D>();
+        isFacingRight = true;
     }
 
     void FixedUpdate()
@@ -37,10 +38,24 @@ public class playerController : MonoBehaviour
         // Accesing the velocity property of the rigidBody and defining in x , y
         rBody.velocity = new Vector2(horizontal * speed, rBody.velocity.y); // feeding the player's y velocity into itself
 
+        //check if the sprite needs to be flipped
+        if ((isFacingRight && rBody.velocity.x < 0) || (!isFacingRight && rBody.velocity.x > 0))
+        {
+            Flip();
+        }
+
     }
     private bool GroundCheck()
     {
         return Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, whatIsGround);
 
+    }
+    private void Flip()
+    {
+        Vector3 temp = transform.localScale;
+        temp.x *= -1;
+        transform.localScale = temp;
+
+        isFacingRight = !isFacingRight;
     }
 }
