@@ -52,10 +52,24 @@ public class playerController : MonoBehaviour
     }
     private void Flip()
     {
-        Vector3 temp = transform.localScale;
-        temp.x *= -1;
-        transform.localScale = temp;
 
+        transform.Rotate(0f, 180f, 0f);
         isFacingRight = !isFacingRight;
+    }
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            this.transform.parent = other.transform;
+        }
+    }
+    public void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Platform"))
+        {
+
+            this.transform.parent = null;
+            
+        }
     }
 }
