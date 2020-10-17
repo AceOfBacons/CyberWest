@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Feet : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject player;
+    playerController playerController;
+ 
     void Start()
     {
-        
+        playerController = GetComponentInParent<playerController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        
+        //if(other.gameObject.CompareTag("Platform") && playerController.isG)
     }
 }
