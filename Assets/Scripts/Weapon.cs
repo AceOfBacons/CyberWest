@@ -15,14 +15,14 @@ public class Weapon : MonoBehaviour
     public void Start()
     {
         clone = GetComponent<GameObject>();
-
+        anim.GetComponent<Animator>();
     }
     void Update()
     {
+
         // Getting button and shooting
         if (Input.GetButtonDown("Fire1"))
         {
-            isShooting = true;
             soundsManager.PlaySound("playerShootSound");
             Shoot();
             cinemachineShake.Instance.ShakeCamera(5f, .1f);
@@ -33,6 +33,7 @@ public class Weapon : MonoBehaviour
             isShooting = false;
         }
         anim.SetBool("shoot", isShooting);
+
     }
 
     public void Shoot()

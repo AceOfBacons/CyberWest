@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public float speed = 20.0f;
     public Rigidbody2D rb;
     Vector3 lastVelocity;
-    private Rigidbody2D clone2;
+    public GameObject impactParticles;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +24,29 @@ public class Bullet : MonoBehaviour
         var direction = Vector3.Reflect(lastVelocity.normalized, other.contacts[0].normal);
         rb.velocity = direction * Speed;
 
-        //if(other.gameObject.tag == "Ground")
-        //{
-        //    Destroy(rb, 2f);
-        //}
+        // Bullet collision with ground
+        if (other.gameObject.tag == "Ground")
+        {
+            Destroy(gameObject, 2f);
+            Instantiate(impactParticles, transform.position, transform.rotation);
+        }
+        else if(other.gameObject.tag == "Enemy") // Bullet collision with enemy
+        {
+            Destroy(gameObject);
+            Instantiate(impactParticles, transform.position, transform.rotation);
+        }
+        else if (other.gameObject.tag == "Player") // Bullet collision with player
+        {
+            Destroy(gameObject);
+            Instantiate(impactParticles, transform.position, transform.rotation);
+        }
+        else if (other.gameObject.tag == "Bullet") // Bullet collision with bullets
+        {
+            Destroy(gameObject);
+            Instantiate(impactParticles, transform.position, transform.rotation);
+        }
     }
+
+
 
 }

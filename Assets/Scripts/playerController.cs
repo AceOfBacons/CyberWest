@@ -10,6 +10,7 @@ public class playerController : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.15f;
     [SerializeField] private Transform groundCheckPos; //Position, rotation and scale of an object.
     [SerializeField] private LayerMask whatIsGround;
+    public static playerController instance;
 
     // Private vars
     private Rigidbody2D rBody;
@@ -17,6 +18,10 @@ public class playerController : MonoBehaviour
     private bool isFacingRight;
     private Animator anim;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         // Catching the rbody
