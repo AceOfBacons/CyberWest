@@ -15,12 +15,14 @@ public class playerController : MonoBehaviour
     private Rigidbody2D rBody;
     private bool isGrounded = false; //make sure i am not touching the ground initially
     private bool isFacingRight;
+    private Animator anim;
 
     void Start()
     {
         // Catching the rbody
         rBody = GetComponent<Rigidbody2D>();
         isFacingRight = true;
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -32,11 +34,17 @@ public class playerController : MonoBehaviour
         //Jump code
         if (isGrounded && Input.GetAxis("Jump") > 0)
         {
+            soundsManager.PlaySound("playerJumpSound");
             rBody.AddForce(new Vector2(0.0f, jumpForce));
             isGrounded = false;
         }
         // Accesing the velocity property of the rigidBody and defining in x , y
         rBody.velocity = new Vector2(horizontal * speed, rBody.velocity.y); // feeding the player's y velocity into itself
+
+        // Communicate with animator
+        anim.SetFloat("xVelocity", Mathf.Abs(rBody.velocity.x));
+        anim.SetFloat("yVelocity", rBody.velocity.y);
+        anim.SetBool("isGrounded", isGrounded);
 
         //check if the sprite needs to be flipped
         if ((isFacingRight && rBody.velocity.x < 0) || (!isFacingRight && rBody.velocity.x > 0))
@@ -52,14 +60,17 @@ public class playerController : MonoBehaviour
     }
     private void Flip()
     {
-
+        // Flip player
         transform.Rotate(0f, 180f, 0f);
         isFacingRight = !isFacingRight;
     }
+
+    // Platforms logic
     public void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Platform"))
         {
+            //Making the player a child
             this.transform.parent = other.transform;
         }
     }
