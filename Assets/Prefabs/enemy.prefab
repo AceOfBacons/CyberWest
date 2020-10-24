@@ -129,7 +129,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a9a581753fd13f64582e9116691503e3, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -151,8 +151,8 @@ MonoBehaviour:
   shouldShoot: 1
   bullet: {fileID: 2322451749209648346, guid: 2a4389fefd0649445a879a3109ec24ee, type: 3}
   firePoint: {fileID: 2285663856428525280}
-  fireRate: 2
-  deadzone: 12
+  fireRate: 1.5
+  deadzone: 14
   impactParticles: {fileID: 6940191377734067338, guid: c1eaa91224eb0c44bbb2fad029639927, type: 3}
 --- !u!61 &2285663856755698918
 BoxCollider2D:
@@ -192,4 +192,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56a6926029457c448d57a33dfd3bc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
+  anim: {fileID: 2285663856755698912}
