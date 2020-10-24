@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField]
+    private float shootDelay;
     public Transform firePoint;
     public GameObject bulletPrefab;
     public static GameObject clone;
@@ -15,24 +17,29 @@ public class Weapon : MonoBehaviour
     public void Start()
     {
         clone = GetComponent<GameObject>();
-        anim.GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
     void Update()
     {
-
+        shootDelay -= Time.deltaTime;
         // Getting button and shooting
         if (Input.GetButtonDown("Fire1"))
         {
-            soundsManager.PlaySound("playerShootSound");
-            Shoot();
-            cinemachineShake.Instance.ShakeCamera(5f, .1f);
-            isShooting = true;
+            if(shootDelay <= 0)
+            {
+                soundsManager.PlaySound("playerShootSound");
+                Shoot();
+                cinemachineShake.Instance.ShakeCamera(5f, .1f);
+                anim.SetBool("shoot", true);
+                shootDelay = .5f;
+            }
+            
+
         }
-        else
+        else if(Input.GetKeyUp("space"))
         {
-            isShooting = false;
+            anim.SetBool("shoot", false);
         }
-        anim.SetBool("shoot", isShooting);
 
     }
 

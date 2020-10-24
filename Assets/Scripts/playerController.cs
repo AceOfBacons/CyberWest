@@ -11,12 +11,15 @@ public class playerController : MonoBehaviour
     [SerializeField] private Transform groundCheckPos; //Position, rotation and scale of an object.
     [SerializeField] private LayerMask whatIsGround;
     public static playerController instance;
+    AudioSource audioSrc;
+
 
     // Private vars
     private Rigidbody2D rBody;
     private bool isGrounded = false; //make sure i am not touching the ground initially
     private bool isFacingRight;
     private Animator anim;
+    private bool isMoving;
 
     private void Awake()
     {
@@ -56,6 +59,7 @@ public class playerController : MonoBehaviour
         {
             Flip();
         }
+
 
     }
     private bool GroundCheck()

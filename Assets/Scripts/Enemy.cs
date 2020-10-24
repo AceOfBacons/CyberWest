@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
             fireCounter -= Time.deltaTime;
             if (fireCounter <= 0)
             {
+                soundsManager.PlaySound("enemyShoot");
                 fireCounter = fireRate;
                 Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
             }
@@ -53,7 +54,6 @@ public class Enemy : MonoBehaviour
         //{
         //    Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
         //}
-
 
 
     }

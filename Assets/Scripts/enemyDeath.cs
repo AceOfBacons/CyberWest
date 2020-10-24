@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerDeath : MonoBehaviour
+public class enemyDeath : MonoBehaviour
 {
     public Animator anim;
     private bool dead = false;
@@ -13,12 +13,12 @@ public class playerDeath : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("Fire"))
+        if (other.gameObject.CompareTag("Bullet"))
         {
-            soundsManager.PlaySound("playerDeath");
+            soundsManager.PlaySound("enemyExplosion");
             anim.SetBool("isDead", true);
-            Invoke("deadSequence", 1.5f);
-            Debug.Log("dead");
+            Invoke("deadSequence", 1.0f);
+            Debug.Log("dead enemy");
         }
         else
         {
@@ -34,7 +34,7 @@ public class playerDeath : MonoBehaviour
     public void deadSequence()
     {
         Destroy(gameObject);
-        LevelManager.instance.Respawn();
-        Debug.Log("dead sequence trig");
+        Debug.Log("sequence");
     }
 }
+
