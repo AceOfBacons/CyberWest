@@ -88,7 +88,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -205,6 +205,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  isGrounded: 0
 --- !u!114 &797691759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9881199bcd2f3f340ac7f3a082fe04b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootDelay: 0
   firePoint: {fileID: 647651689}
   bulletPrefab: {fileID: 6900656946815518947, guid: c0f7555635cac494ca3dcc2fdde55006, type: 3}
 --- !u!114 &797691760
@@ -231,6 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83fc73c3e536b14ea96bfd820148c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  onCheck: 0
 --- !u!1 &393690344063052635
 GameObject:
   m_ObjectHideFlags: 0

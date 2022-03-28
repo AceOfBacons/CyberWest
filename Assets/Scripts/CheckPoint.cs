@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-   
+    [SerializeField] private GameObject AntennaLight;
+
     void Start()
     {
         
@@ -14,5 +15,14 @@ public class CheckPoint : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("On checkpoint");
+            AntennaLight.SetActive(true);
+        }
     }
 }

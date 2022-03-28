@@ -10,7 +10,7 @@ public class soundsManager : MonoBehaviour
     void Start()
     {
         playerShootSound = Resources.Load<AudioClip>("playerShootSound");
-        jumpSound = Resources.Load<AudioClip>("playerJumpSound");
+        jumpSound = Resources.Load<AudioClip>("newJump");
         enemyShoot = Resources.Load<AudioClip>("enemyShoot");
         enemyExplosion = Resources.Load<AudioClip>("enemyExplosion");
         playerDeath = Resources.Load<AudioClip>("playerDeath");

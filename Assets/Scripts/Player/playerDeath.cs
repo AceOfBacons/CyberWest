@@ -17,6 +17,7 @@ public class playerDeath : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Respawn"))
         {
+            Debug.Log("Checkpoint passed");
             LevelManager.instance.respawnPoint = collision.transform;
         }
     }
