@@ -16,7 +16,7 @@ public class playerController : MonoBehaviour
 
     // Private vars
     private Rigidbody2D rBody;
-    private bool isGrounded = false; //make sure i am not touching the ground initially
+    public bool isGrounded = false; //make sure i am not touching the ground initially
     private bool isFacingRight;
     private Animator anim;
     private bool isMoving;
@@ -80,7 +80,9 @@ public class playerController : MonoBehaviour
         if (other.gameObject.CompareTag("Platform"))
         {
             //Making the player a child
+            isGrounded = true;
             this.transform.parent = other.transform;
+            
         }
     }
     public void OnCollisionExit2D(Collision2D other)
@@ -89,7 +91,7 @@ public class playerController : MonoBehaviour
         {
 
             this.transform.parent = null;
-            
+            isGrounded = false;
         }
     }
 }
